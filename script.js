@@ -1,23 +1,17 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//     const words = ["Illustrations", "Calligraphy", "3D Renders", "Images"];
-//     let index = 0;
-//     const changingText = document.querySelector(".changing-text");
 
-//     function changeText() {
-//         changingText.style.opacity = 0; // Fade out
-//         setTimeout(() => {
-//             changingText.textContent = words[index];
-//             changingText.style.opacity = 1; // Fade in
-//             index = (index + 1) % words.length;
-//         }, 300);
-//     }
-
-//     setInterval(changeText, 2000);
-// });
 /* script.js */
+window.addEventListener("scroll", function() {
+    let navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) { // If user scrolls down 50px
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     // Hero Section Text Change Effect
-    const words = ["illustrations", "Calligraphy", "3D Renders", "Images"];
+    const words = ["Patterns","Wallpaper", "Calligraphy", "Images"];
     let index = 0;
     const changingText = document.querySelector(".changing-text");
 
@@ -27,53 +21,74 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     setInterval(changeText, 2000);
 })
-//     // Card Slider Functionality
-//     const slider = document.querySelector(".cards");
-//     const prevArrow = document.querySelector(".prev-arrow");
-//     const nextArrow = document.querySelector(".next-arrow");
-    
-//     let scrollAmount = 0;
-//     const scrollStep = 200;
 
-//     nextArrow.addEventListener("click", function () {
-//         slider.scrollBy({ left: scrollStep, behavior: "smooth" });
-//     });
+document.addEventListener("DOMContentLoaded", () => {
+    // DOWNLOAD BUTTON FUNCTIONALITY
+    document.querySelectorAll(".download-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            let image = event.target.closest(".image-card").querySelector("img").src;
+            let link = document.createElement("a");
+            link.href = image;
+            link.download = image.split("/").pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    });
 
-//     prevArrow.addEventListener("click", function () {
-//         slider.scrollBy({ left: -scrollStep, behavior: "smooth" });
-//     });
+    // THREE-DOT MENU FUNCTIONALITY
+    document.querySelectorAll(".menu-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            let menuContainer = event.target.closest(".menu-container");
+            menuContainer.classList.toggle("active");
+        });
+    });
+   
 
-//     // Download Button Functionality
-//     document.querySelectorAll(".download").forEach(button => {
-//         button.addEventListener("click", function () {
-//             alert("Download started!"); // Replace with actual download functionality
-//         });
-//     });
+    // COPY EMBED CODE FUNCTIONALITY
+    document.querySelectorAll(".copy-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            let image = event.target.closest(".image-card").querySelector("img").src;
+            let embedCode = `<img src="${image}" alt="Islamic Image">`;
+            navigator.clipboard.writeText(embedCode).then(() => {
+                alert("Embed code copied to clipboard!");
+            });
+        });
+    });
 
-//     // Options (Share, Download, Copy) Functionality
-//     document.querySelectorAll(".options").forEach(menu => {
-//         menu.addEventListener("click", function () {
-//             const optionsDiv = document.createElement("div");
-//             optionsDiv.className = "options-menu";
-//             optionsDiv.innerHTML = `<ul>
-//                 <li class='share'>Share</li>
-//                 <li class='download'>Download</li>
-//                 <li class='copy'>Copy</li>
-//             </ul>`;
-            
-//             this.parentElement.appendChild(optionsDiv);
-            
-//             optionsDiv.querySelector(".share").addEventListener("click", () => alert("Share functionality"));
-//             optionsDiv.querySelector(".download").addEventListener("click", () => alert("Download functionality"));
-//             optionsDiv.querySelector(".copy").addEventListener("click", () => {
-//                 navigator.clipboard.writeText("Embedded code copied!");
-//                 alert("Copied to clipboard");
-//             });
-            
-//             setTimeout(() => optionsDiv.remove(), 3000);
-//         });
-//     });
-// });
+    // SHARE BUTTON FUNCTIONALITY
+    document.querySelectorAll(".share-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            let image = event.target.closest(".image-card").querySelector("img").src;
+            if (navigator.share) {
+                navigator.share({
+                    title: "Check out this Islamic Image",
+                    url: image
+                }).catch(err => console.error("Error sharing:", err));
+            } else {
+                alert("Sharing not supported in this browser.");
+            }
+        });
+    });
+
+    // SAVE BUTTON FUNCTIONALITY (Just alert for now)
+    document.querySelectorAll(".save-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            alert("Image saved successfully!");
+        });
+    });
+
+    // CLOSE MENU WHEN CLICKING OUTSIDE
+    document.addEventListener("click", (event) => {
+        if (!event.target.closest(".menu-container")) {
+            document.querySelectorAll(".menu-container").forEach(menu => {
+                menu.classList.remove("active");
+            });
+        }
+    });
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const cardsContainer = document.querySelector(".cards");
     const prevButton = document.querySelector(".prev");

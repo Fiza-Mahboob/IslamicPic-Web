@@ -1,0 +1,109 @@
+/* IMAGE GALLERY SECTION */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 images in a row */
+    gap: 15px; /* Space between images */
+    margin-top: 120px; /* Align with cards above */
+    /* padding: 0 40px; Keep spacing uniform */
+    padding-left: 58px;
+    padding-right: 55px;
+}
+
+/* IMAGE CARDS */
+.image-card {
+    position: relative;
+    width: 100%;
+    height: 350px; /* Ensures all images are uniform */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9; /* Background color to prevent gaps */
+    /* display: flex;
+    align-items: stretch; 
+    justify-content: stretch; */
+}
+
+/* IMAGE */
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+
+.hero {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 35px;
+    background-image: url('images/hero-bg.png');
+    background-color: #faf5e2;
+    background-size: 75%;
+     background-size: contain; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    color: #000;
+    height: 80vh;
+    width: 100vw;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+} 
+
+.hero-content h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;   /*jjsj*/
+    font-size: 50px;
+    font-weight: bolder;
+    margin-bottom: 12px;
+}
+.static-text {
+    margin-right: 30px; /* Moves "Free Islamic" slightly left */
+} 
+.hero-content p {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.changing-text {
+    color: darkgreen;
+    display: inline-block;
+    width: 160px; /* Adjust based on the longest word */
+    text-align: center;
+    white-space: nowrap;
+}
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.search-bar input {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 5px;
+    transition: none;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+.search-bar input::placeholder {
+    font-size: 16px ; 
+    white-space: nowrap; 
+}
+.search-bar button {
+    margin-left: 5px;
+    padding: 5px 13px;
+    font-size: 16px;
+    border: none;
+    border: 2px solid black;
+    background-color:black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}

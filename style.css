@@ -14,15 +14,17 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 25px 50px;
-    background-color: #fff;
+    /* background-color: #fff; */
     background-color: transparent;
     z-index: 1000;
     margin-right: 50px;
+    transition: background-color 0.3s ease, padding 0.3s ease; /* Smooth transition */
+
 }
-/* .navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.7); 
-    transition: background-color 0.3s ease;
-} */
+.navbar.scrolled {
+         background-color: #faf5e2;
+         padding: 10px 50px; 
+}
 .logo {
     font-size: 24px;
     font-weight: bold;
@@ -85,16 +87,16 @@ button {
 
 .hero {
     text-align: center;
-    padding-top: 50px;
+    padding-top: 25px;
     padding-bottom: 35px;
     background-image: url('images/hero-bg.png');
     background-color: #faf5e2;
-    background-size: 75%;
-     background-size: contain; 
+    background-size: 80%;
+    background-size: contain;
     background-position: center center; 
     background-repeat: no-repeat;
     color: #000;
-    height: 80vh;
+    height: 85vh;
     width: 100vw;  
     display: flex;
     flex-direction: column;
@@ -104,20 +106,35 @@ button {
     z-index: 1;
 } 
 
+.hero::before {
+    content: "";
+    background: url('images/Vector@2x.png') no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%; /* Adjust size */
+    height: 100%;
+    z-index: 0; /* Behind text */
+    opacity: 1; /* Optional: Adjust visibility */
+    filter: brightness(0.99);
+    margin-left: 15px;
+}
 .hero-content h1 {
-    display: flex;
+   /* display: flex;
     justify-content: center;
-    align-items: center;   /*jjsj*/
-    font-size: 50px;
+    align-items: center; */ 
+    font-size: 57px;
     font-weight: bolder;
     margin-bottom: 12px;
 }
 .static-text {
-    margin-right: 30px; /* Moves "Free Islamic" slightly left */
+    margin-left:-50px; 
 } 
 .hero-content p {
   font-size: 16px;
   margin-top: 0;
+  margin-left: 25;
 }
 
 .changing-text {
@@ -160,10 +177,9 @@ button {
     cursor: pointer;
 }
 
-
 .cards-slider {
     position: absolute;
-    top: 81%; /* Adjust position */
+    top: 89%; /* Adjust position */
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -180,7 +196,7 @@ button {
     overflow-x: auto;
     scroll-behavior: smooth;
     padding: 10px 0;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    scrollbar-width: none; 
 }
 
 /* Hide scrollbar for WebKit browsers */
@@ -189,8 +205,8 @@ button {
 }
 
 .card {
-    width: 210px; 
-    height: 180px; 
+    width: 212px; 
+    height: 170px; 
     border-radius: 6px;
     background-color: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -204,7 +220,7 @@ button {
 .card img {
     width: 100%;
     height: 77%;
-    object-fit: contain; /* Ensures full image is visible */
+    object-fit: fill; /* Ensures full image is visible */
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     background-color: white; /* Fills gaps around image */
@@ -243,6 +259,7 @@ button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease;
     z-index: 1000;
+    
 }
 
 .prev:hover, .next:hover {
@@ -250,13 +267,165 @@ button {
 }
 
 .prev {
-    left: 10px;
+    left: 5px;
     display: block; /* Ensure visibility */
 }
 
 .next {
-    right: 10px;
+    right: 13px;
     display: block; /* Ensure visibility */
 }
 
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 images in a row */
+    grid-auto-rows: 270px; /* Base row height */
+    gap: 15px; /* Space between images */
+    margin-top: 150px;
+    padding-left: 58px;
+    padding-right: 55px;
+}
 
+/* IMAGE CARDS */
+.image-card {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9; /* Background color to prevent gaps */
+}
+
+/* Large Images */
+.image-card.large {
+    grid-row: span 2; /* Takes up two rows */
+    height: 100%; /* Allow the grid to define the height */
+}
+
+/* Small Images */
+.image-card.small {
+    grid-row: span 1; /* Takes up one row */
+    height: 100%;
+}
+
+/* IMAGE */
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit:fill; /* Ensures images cover the entire card */
+}
+
+
+/* DOWNLOAD BUTTON */
+.download-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 1px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.download-btn i {
+    font-size: 16px;
+}
+
+.download-btn:hover {
+    background-color: #156c34;
+}
+
+/* THREE-DOT MENU */
+.menu-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.menu-btn {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* DROPDOWN MENU */
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 35px;
+    width: 130px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 100;
+    padding: 5px 0;
+}
+
+.menu-dropdown button {
+    width: 100%;
+    padding: 10px 12px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.menu-dropdown button i {
+    font-size: 16px; 
+    color: #333;
+}
+
+.menu-dropdown button p {
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.menu-dropdown button:hover {
+    background-color: #f1f1f1;
+}
+
+/* SHOW MENU ON CLICK */
+.menu-container.active .menu-dropdown {
+    display: block;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1200px) {
+    .image-gallery {
+        grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+    }
+}
+
+@media (max-width: 900px) {
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 images per row */
+    }
+}
+
+@media (max-width: 600px) {
+    .image-gallery {
+        grid-template-columns: repeat(1, 1fr); /* 1 image per row */
+    }
+}
